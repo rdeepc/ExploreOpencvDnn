@@ -20,5 +20,10 @@ classNames = {0: 'background',
               86: 'vase', 87: 'scissors', 88: 'teddy bear', 89: 'hair drier', 90: 'toothbrush'}
 
 # Loading model
-model = cv2.dnn.readNetFromTensorflow('model/frozen_inference_graph.pb', 'model/ssd_mobilenet_v2_coco_2018_03_29.pbtxt')
+model = cv2.dnn.readNetFromTensorflow('models/frozen_inference_graph.pb', 'models/ssd_mobilenet_v2_coco_2018_03_29.pbtxt')
 image = cv2.imread("image.jpeg")
+
+
+cv2.imshow('image',image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
