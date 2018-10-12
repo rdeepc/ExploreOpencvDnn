@@ -1,5 +1,6 @@
-import cv2 as cv
+import cv2
 
+# Pretrained classes in the model
 classNames = {0: 'background',
               1: 'person', 2: 'bicycle', 3: 'car', 4: 'motorcycle', 5: 'airplane', 6: 'bus',
               7: 'train', 8: 'truck', 9: 'boat', 10: 'traffic light', 11: 'fire hydrant',
@@ -18,3 +19,6 @@ classNames = {0: 'background',
               80: 'toaster', 81: 'sink', 82: 'refrigerator', 84: 'book', 85: 'clock',
               86: 'vase', 87: 'scissors', 88: 'teddy bear', 89: 'hair drier', 90: 'toothbrush'}
 
+# Loading model
+model = cv2.dnn.readNetFromTensorflow('model/frozen_inference_graph.pb', 'model/ssd_mobilenet_v2_coco_2018_03_29.pbtxt')
+image = cv2.imread("image.jpeg")
