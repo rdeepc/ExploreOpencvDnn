@@ -25,8 +25,11 @@ image = cv2.imread("image.jpeg")
 
 model.setInput(cv2.dnn.blobFromImage(image, size=(300, 300), swapRB=True))
 output = model.forward()
+# print(output[0,0,:,:].shape)
 
-print(output.shape)
+for detection in output[0,0,:,:]:
+    confidence = detection[2]
+
 # cv2.imshow('image',image)
 # cv2.waitKey(0)
 # cv2.destroyAllWindows()
