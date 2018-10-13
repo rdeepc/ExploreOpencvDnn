@@ -23,7 +23,8 @@ classNames = {0: 'background',
 model = cv2.dnn.readNetFromTensorflow('models/frozen_inference_graph.pb', 'models/ssd_mobilenet_v2_coco_2018_03_29.pbtxt')
 image = cv2.imread("image.jpeg")
 
+model.setInput(cv2.dnn.blobFromImage(image, size=(300, 300), swapRB=True))
 
-cv2.imshow('image',image)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+# cv2.imshow('image',image)
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
