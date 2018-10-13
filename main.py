@@ -24,7 +24,9 @@ model = cv2.dnn.readNetFromTensorflow('models/frozen_inference_graph.pb', 'model
 image = cv2.imread("image.jpeg")
 
 model.setInput(cv2.dnn.blobFromImage(image, size=(300, 300), swapRB=True))
+output = model.forward()
 
+print(output.shape)
 # cv2.imshow('image',image)
 # cv2.waitKey(0)
 # cv2.destroyAllWindows()
