@@ -19,16 +19,28 @@ classNames = {0: 'background',
               80: 'toaster', 81: 'sink', 82: 'refrigerator', 84: 'book', 85: 'clock',
               86: 'vase', 87: 'scissors', 88: 'teddy bear', 89: 'hair drier', 90: 'toothbrush'}
 
+
+def id_class_name(class_id, classes):
+    for key,value in classes.items():
+        if class_id == key:
+            return value
+
+
 # Loading model
-model = cv2.dnn.readNetFromTensorflow('models/frozen_inference_graph.pb', 'models/ssd_mobilenet_v2_coco_2018_03_29.pbtxt')
+model = cv2.dnn.readNetFromTensorflow('models/frozen_inference_graph.pb',
+                                      'models/ssd_mobilenet_v2_coco_2018_03_29.pbtxt')
 image = cv2.imread("image.jpeg")
 
 model.setInput(cv2.dnn.blobFromImage(image, size=(300, 300), swapRB=True))
 output = model.forward()
 # print(output[0,0,:,:].shape)
 
-for detection in output[0,0,:,:]:
+for detection in output[0, 0, :, :]:
     confidence = detection[2]
+    if confidence > .5:
+        class_id = detection[1]
+        print(str(str(class_id) + " " + str(detection[2])  + " " + id_class_name(class_id,classNames)))
+
 
 # cv2.imshow('image',image)
 # cv2.waitKey(0)
